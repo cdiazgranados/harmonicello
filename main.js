@@ -1,3 +1,13 @@
+// let hertz = 220;
+function getValue(){
+    hertz = document.getElementById("getHertz").value;
+    hertz = hertz / 2; 
+    console.log(hertz);
+    drawGrid(hertz);
+}
+
+
+
 const notesDiv = document.getElementById("notes");
 function makeString(f) {
     return [
@@ -12,6 +22,7 @@ function makeString(f) {
     ]
 }
 
+//perhaps populate an array of string values from the database?
 function makeGrid(f) {
     let string1 = f;
     let string2 = (string1 * (4/3)) /2;
@@ -81,8 +92,8 @@ function makeOscillator() {
 
     return oscillatorNode;
 }
-
-drawGrid(220);
+// hertz = 220;
+// drawGrid(hertz);
 
 
 
