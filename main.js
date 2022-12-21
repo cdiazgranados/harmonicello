@@ -1,13 +1,20 @@
 let hertz = 220;
+let waveform = "triangle";
 
 
+//add the catch and specifics for the drop down.
+function getHertz(){
+    hertz = document.getElementById("getHertz").value;
+    hertz = hertz / 2; 
+    drawGrid(hertz);
+}
 
-// function getValue(){
-//     hertz = document.getElementById("getHertz").value;
-//     hertz = hertz / 2; 
-//     console.log(hertz);
-//     drawGrid(hertz);
-// }
+//add a catch for stopping the oscillator when change happens during a sustained note
+//would this be a feature?
+function getWaveform() {
+    waveform = document.getElementById("waveform").value;
+    drawGrid(hertz);
+}
 
 
 
@@ -69,6 +76,7 @@ function toggleSynth(event) {
         button.setAttribute("state", "on");
         button.style.background = '#00FF00';
         let oscillatorNode = makeOscillator();
+        oscillatorNode.type = waveform;
         oscillatorNode.frequency.setValueAtTime(frequency, audioCtx.currentTime);
         synths[frequency] = oscillatorNode;
     } else {

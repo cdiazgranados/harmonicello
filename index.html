@@ -10,9 +10,6 @@
       </head>
       <body>
         <h1>Harmonicello</h1>
-        <!-- <h2>Which "A" would you like to tune the Harmonicello with?</h2>
-        <input type="number" id ="getHertz" value="">
-        <button onclick="getValue()">Set Hertz</button> -->
         <div class="harmonicello">
 
             <div class="string" id="3">
@@ -56,6 +53,15 @@
               <div class="note a-string" data-note="">8</div>
             </div>
           </div>
+          <input type="number" id ="getHertz" value="440" min="430" max="450">
+          <button onclick="getHertz()">Set Hertz</button>
+          <label for="waveform">Waveform:</label>
+          <select onchange="getWaveform()" name="waveform" id="waveform">
+          <option value="sinewave">Sinewave</option>
+          <option value="triangle">Triangle</option>
+          <option value="square">Square</option>
+          <option value="sawtooth">Sawtooth</option>
+          </select>
         <script src="/main.js"></script>
       </body>
 
