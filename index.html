@@ -1,25 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="./styles.css"> -->
-        <title>Harmonicello</title>
+        <link rel="stylesheet" href="./style.css">
+        <title>Testing</title>
       </head>
       <body>
         <h1>Harmonicello</h1>
-        <h2>Which "A" would you like to tune the Harmonicello with?</h2>
+        <!-- <h2>Which "A" would you like to tune the Harmonicello with?</h2>
         <input type="number" id ="getHertz" value="">
-        <button onclick="getValue()">Set Hertz</button>
-        <div id="notes"></div>
+        <button onclick="getValue()">Set Hertz</button> -->
+        <div class="harmonicello">
+
+            <div class="string" id="3">
+              <div class="open-strings c-string" data-note="">C</div>
+              <div class="note c-string" data-note="">2</div>
+              <div class="note c-string" data-note="">3</div>
+              <div class="note c-string" data-note="">4</div>
+              <div class="note c-string" data-note="">5</div>
+              <div class="note c-string" data-note="">6</div>
+              <div class="note c-string" data-note="">7</div>
+              <div class="note c-string" data-note="">8</div>
+            </div>
+            <div class="string" id="2">
+              <div class="open-strings g-string" data-note="">G</div>
+              <div class="note g-string" data-note="">2</div>
+              <div class="note g-string" data-note="">3</div>
+              <div class="note g-string" data-note="">4</div>
+              <div class="note g-string" data-note="">5</div>
+              <div class="note g-string" data-note="">6</div>
+              <div class="note g-string" data-note="">7</div>
+              <div class="note g-string" data-note="">8</div>
+            </div>
+            <div class="string" id="1"> 
+              <div class="open-strings d-string" data-note="">D</div>
+              <div class="note d-string" data-note="">2</div>
+              <div class="note d-string" data-note="">3</div>
+              <div class="note d-string" data-note="">4</div>
+              <div class="note d-string" data-note="">5</div>
+              <div class="note d-string" data-note="">6</div>
+              <div class="note d-string" data-note="">7</div>
+              <div class="note d-string" data-note="">8</div>
+            </div>
+            <div class="string" id="0">
+              <div class="open-strings a-string" data-note="">A</div>
+              <div class="note a-string" data-note="">2</div>
+              <div class="note a-string" data-note="">3</div>
+              <div class="note a-string" data-note="">4</div>
+              <div class="note a-string" data-note="">5</div>
+              <div class="note a-string" data-note="">6</div>
+              <div class="note a-string" data-note="">7</div>
+              <div class="note a-string" data-note="">8</div>
+            </div>
+          </div>
         <script src="/main.js"></script>
       </body>
-    <!-- <body>
-        <button class="A">A</button>
-        <button class="D">D</button>
-        <button class="G">G</button>
-        <button class="C">C</button>
-        <script src="./main.js"></script>
-    </body>   -->
+
 </html>

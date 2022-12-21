@@ -1,14 +1,16 @@
-// let hertz = 220;
-function getValue(){
-    hertz = document.getElementById("getHertz").value;
-    hertz = hertz / 2; 
-    console.log(hertz);
-    drawGrid(hertz);
-}
+let hertz = 220;
 
 
 
-const notesDiv = document.getElementById("notes");
+// function getValue(){
+//     hertz = document.getElementById("getHertz").value;
+//     hertz = hertz / 2; 
+//     console.log(hertz);
+//     drawGrid(hertz);
+// }
+
+
+
 function makeString(f) {
     return [
         f,
@@ -22,7 +24,7 @@ function makeString(f) {
     ]
 }
 
-//perhaps populate an array of string values from the database?
+//perhaps populate an array of string values from the database
 function makeGrid(f) {
     let string1 = f;
     let string2 = (string1 * (4/3)) /2;
@@ -37,23 +39,23 @@ function makeGrid(f) {
     ]
 }
 
+
 function drawGrid(f) {
     let notes = makeGrid(f);
 
-    for (let row = 0; row < notes.length; row++) {
-        let tempRowDiv = document.createElement("div");
-
-        for (let col = 0; col < notes[row].length; col++) {
-            let tempCellButton = document.createElement("button");
-            tempCellButton.setAttribute("state", "off");
-            tempCellButton.style.background = '#d3d3d3';
-            tempCellButton.textContent = notes[row][col];
-            tempCellButton.addEventListener("click", toggleSynth);
-            tempRowDiv.appendChild(tempCellButton);
+    for (let i = 0; i < notes.length; i++) {
+        var element = document.getElementById(i);
+        var children = element.children;
+        for (let j = 0; j < children.length; j++) {
+            var child = children[j];
+            child.setAttribute("data-note", notes[i][j])
+            child.setAttribute("state", "off")
+            child.addEventListener("click", toggleSynth);
         }
-        notesDiv.appendChild(tempRowDiv);
     }
 }
+
+
 
 const audioCtx = new AudioContext();
 audioCtx.suspend();
@@ -62,8 +64,7 @@ let synths = {};
 
 function toggleSynth(event) {
     let button = event.target;
-    let frequency = button.innerText;
-
+    let frequency = button.getAttribute("data-note");
     if (button.getAttribute("state") == "off") {
         button.setAttribute("state", "on");
         button.style.background = '#00FF00';
@@ -72,7 +73,7 @@ function toggleSynth(event) {
         synths[frequency] = oscillatorNode;
     } else {
         button.setAttribute("state", "off");
-        button.style.background='#d3d3d3';
+        button.style.background= button.getAttribute("background-color");
         synths[frequency].stop();
     }
     console.log(synths);
@@ -92,58 +93,7 @@ function makeOscillator() {
 
     return oscillatorNode;
 }
-// hertz = 220;
-// drawGrid(hertz);
+
+drawGrid(hertz);
 
 
-
-
-
-
-
-
-//simple string buttons
-
-// const aBtn = document.querySelector(".A");
-// aBtn.addEventListener("click", () => {
-//     const ctx = new(window.AudioContext || window.webkitAudioContext)();
-//     const osc = ctx.createOscillator();
-//     osc.connect(ctx.destination);
-//     osc.frequency.value = 220; 
-//     osc.start(0);
-//     osc.stop(1);
-//     console.log("Audio Context played: A");
-// })
-
-// const dBtn = document.querySelector(".D");
-// dBtn.addEventListener("click", () => {
-//     const ctx = new(window.AudioContext || window.webkitAudioContext)();
-//     const osc = ctx.createOscillator();
-//     osc.connect(ctx.destination);
-//     osc.frequency.value = 146.8; 
-//     osc.start(0);
-//     osc.stop(1);
-//     console.log("Audio Context played: D");
-// })
-
-// const gBtn = document.querySelector(".G");
-// gBtn.addEventListener("click", () => {
-//     const ctx = new(window.AudioContext || window.webkitAudioContext)();
-//     const osc = ctx.createOscillator();
-//     osc.connect(ctx.destination);
-//     osc.frequency.value = 98;
-//     osc.start(0);
-//     osc.stop(1);
-//     console.log("Audio Context played: G");
-// })
-
-// const cBtn = document.querySelector(".C");
-// cBtn.addEventListener("click", () => {
-//     const ctx = new(window.AudioContext || window.webkitAudioContext)();
-//     const osc = ctx.createOscillator();
-//     osc.connect(ctx.destination);
-//     osc.frequency.value = 65.4; 
-//     osc.start(0);
-//     osc.stop(1);
-//     console.log("Audio Context played: C");
-// })
