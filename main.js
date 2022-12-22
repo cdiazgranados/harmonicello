@@ -1,6 +1,16 @@
-let hertz = 220;
-let waveform = "triangle";
+//add play all held off and on
 
+let hertz = 220;
+let waveform = "sinewave";
+let sustain = "OFF";
+
+const toggle = document.querySelector('.toggle input');
+
+toggle.addEventListener('click', () => {
+    const onOff = toggle.parentNode.querySelector('.onOff');
+    sustain = toggle.checked ? "ON" : "OFF";
+    console.log(sustain);
+})
 
 //add the catch and specifics for the drop down.
 function getHertz(){
@@ -72,7 +82,7 @@ let synths = {};
 function toggleSynth(event) {
     let button = event.target;
     let frequency = button.getAttribute("data-note");
-    if (button.getAttribute("state") == "off") {
+    if (button.getAttribute("state") == "off" && sustain == "ON") { //AND SUSTAIN TOGGLE
         button.setAttribute("state", "on");
         button.style.background = '#00FF00';
         let oscillatorNode = makeOscillator();
