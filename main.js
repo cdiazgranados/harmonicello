@@ -79,6 +79,7 @@ audioCtx.suspend();
 
 let synths = {};
 
+
 function toggleSynth(event) {
     let button = event.target;
     let frequency = button.getAttribute("data-note");
