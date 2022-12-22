@@ -1,7 +1,7 @@
 //add play all held off and on
 
 let hertz = 220;
-let waveform = "sinewave";
+let waveform = "sine";
 let sustain = "OFF";
 
 const toggle = document.querySelector('.toggle input');
@@ -77,16 +77,39 @@ function drawGrid(f) {
 const audioCtx = new AudioContext();
 audioCtx.suspend();
 
-let synths = {};
+let synths = {}; //holding values
 
 
 function toggleSynth(event) {
     let button = event.target;
     let frequency = button.getAttribute("data-note");
-    if (button.getAttribute("state") == "off" && sustain == "ON") { //AND SUSTAIN TOGGLE
+    if(button.getAttribute("state") == "off" && sustain == "OFF") {
+        console.log("testing no sustain");
+        button.setAttribute("state", "on");
+        button.style.background = '#00FF00';
+        //have to create a new audio context for each note that is not sustained
+        const audioCt = new AudioContext();
+        let oscillatorNode = audioCt.createOscillator();
+        let gainNode = audioCt.createGain();
+        let output = audioCt.destination;
+        oscillatorNode.connect(gainNode);
+        gainNode.gain.setValueAtTime(0.1, audioCt.currentTime);
+        gainNode.connect(output);
+        oscillatorNode.frequency.value = frequency;
+        oscillatorNode.type = waveform;
+        oscillatorNode.start(0);
+        oscillatorNode.stop(.8);
+        
+        
+        button.setAttribute("state", "off");
+        button.style.background= button.getAttribute("background-color");
+        
+        
+    } else if (button.getAttribute("state") == "off" && sustain == "ON") { //AND SUSTAIN TOGGLE
         button.setAttribute("state", "on");
         button.style.background = '#00FF00';
         let oscillatorNode = makeOscillator();
+        oscillatorNode.start();
         oscillatorNode.type = waveform;
         oscillatorNode.frequency.setValueAtTime(frequency, audioCtx.currentTime);
         synths[frequency] = oscillatorNode;
@@ -108,7 +131,7 @@ function makeOscillator() {
     oscillatorNode.connect(gainNode);
     gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
     gainNode.connect(output);
-    oscillatorNode.start()
+    // oscillatorNode.start()
 
     return oscillatorNode;
 }
