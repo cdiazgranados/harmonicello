@@ -13,44 +13,44 @@
         <div class="harmonicello">
 
             <div class="string" id="3">
-              <div class="open-strings c-string" data-note="">C</div>
-              <div class="note c-string" data-note="">2</div>
-              <div class="note c-string" data-note="">3</div>
-              <div class="note c-string" data-note="">4</div>
-              <div class="note c-string" data-note="">5</div>
-              <div class="note c-string" data-note="">6</div>
-              <div class="note c-string" data-note="">7</div>
-              <div class="note c-string" data-note="">8</div>
+              <div class="open-strings string-four" id ="string-four" data-note="">C</div>
+              <div class="note string-four" data-note="">2</div>
+              <div class="note string-four" data-note="">3</div>
+              <div class="note string-four" data-note="">4</div>
+              <div class="note string-four" data-note="">5</div>
+              <div class="note string-four" data-note="">6</div>
+              <div class="note string-four" data-note="">7</div>
+              <div class="note string-four" data-note="">8</div>
             </div>
             <div class="string" id="2">
-              <div class="open-strings g-string" data-note="">G</div>
-              <div class="note g-string" data-note="">2</div>
-              <div class="note g-string" data-note="">3</div>
-              <div class="note g-string" data-note="">4</div>
-              <div class="note g-string" data-note="">5</div>
-              <div class="note g-string" data-note="">6</div>
-              <div class="note g-string" data-note="">7</div>
-              <div class="note g-string" data-note="">8</div>
+              <div class="open-strings string-three" id ="string-three" data-note="">G</div>
+              <div class="note string-three" data-note="">2</div>
+              <div class="note string-three" data-note="">3</div>
+              <div class="note string-three" data-note="">4</div>
+              <div class="note string-three" data-note="">5</div>
+              <div class="note string-three" data-note="">6</div>
+              <div class="note string-three" data-note="">7</div>
+              <div class="note string-three" data-note="">8</div>
             </div>
             <div class="string" id="1"> 
-              <div class="open-strings d-string" data-note="">D</div>
-              <div class="note d-string" data-note="">2</div>
-              <div class="note d-string" data-note="">3</div>
-              <div class="note d-string" data-note="">4</div>
-              <div class="note d-string" data-note="">5</div>
-              <div class="note d-string" data-note="">6</div>
-              <div class="note d-string" data-note="">7</div>
-              <div class="note d-string" data-note="">8</div>
+              <div class="open-strings string-two" id ="string-two" data-note="">D</div>
+              <div class="note string-two" data-note="">2</div>
+              <div class="note string-two" data-note="">3</div>
+              <div class="note string-two" data-note="">4</div>
+              <div class="note string-two" data-note="">5</div>
+              <div class="note string-two" data-note="">6</div>
+              <div class="note string-two" data-note="">7</div>
+              <div class="note string-two" data-note="">8</div>
             </div>
             <div class="string" id="0">
-              <div class="open-strings a-string" data-note="">A</div>
-              <div class="note a-string" data-note="">2</div>
-              <div class="note a-string" data-note="">3</div>
-              <div class="note a-string" data-note="">4</div>
-              <div class="note a-string" data-note="">5</div>
-              <div class="note a-string" data-note="">6</div>
-              <div class="note a-string" data-note="">7</div>
-              <div class="note a-string" data-note="">8</div>
+              <div class="open-strings string-one" id ="string-one" data-note="">A</div>
+              <div class="note string-one" data-note="">2</div>
+              <div class="note string-one" data-note="">3</div>
+              <div class="note string-one" data-note="">4</div>
+              <div class="note string-one" data-note="">5</div>
+              <div class="note string-one" data-note="">6</div>
+              <div class="note string-one" data-note="">7</div>
+              <div class="note string-one" data-note="">8</div>
             </div>
           </div>
           <input type="number" id ="getHertz" value="440" min="430" max="450">
@@ -61,6 +61,13 @@
           <option value="triangle">Triangle</option>
           <option value="square">Square</option>
           <option value="sawtooth">Sawtooth</option>
+          </select>
+          <label for="instrument">Instrument:</label>
+          <select onchange="getInstrument()" name="instrument" id="instrument">
+          <option value="cello">Cello</option>
+          <option value="violin">Violin</option>
+          <option value="viola">Viola</option>
+          <option value="bass">Bass</option>
           </select>
           <label class="toggle">
             <span class="onoff">Sustain</span>

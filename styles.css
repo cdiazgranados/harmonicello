@@ -68,18 +68,18 @@ h1 {
       border: 3px; 
   }
   
-  .c-string{
+  .string-four{
       background-color: rebeccapurple;
   }
   
-  .g-string{
+  .string-three{
       background-color: slateblue;
   }
   
-  .d-string{
+  .string-two{
       background-color: slategrey;
   }
   
-  .a-string{
+  .string-one{
       background-color: steelblue;
   }

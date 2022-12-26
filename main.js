@@ -1,8 +1,14 @@
 //add play all held off and on
+//potentially change inner html with ascii values
 
-let hertz = 220;
+let hertz = 440;
 let waveform = "sine";
 let sustain = "OFF";
+let instrument = "cello";
+
+let violinArr = ["E", "A", "D", "G"];
+let bassArr = ["G", "D", "A", "E"];
+let celloArr = ["A", "D", "G", "C"];
 
 const toggle = document.querySelector('.toggle input');
 
@@ -26,6 +32,46 @@ function getWaveform() {
     drawGrid(hertz);
 }
 
+function getInstrument() {
+    instrument = document.getElementById("instrument").value;
+    changeStrings();
+    drawGrid(hertz);
+    console.log(instrument);
+}
+
+function changeStrings() {
+
+    if(instrument == "violin") {
+        
+        document.getElementById("string-four").innerHTML = violinArr[3];
+        document.getElementById("string-three").innerHTML = violinArr[2];
+        document.getElementById("string-two").innerHTML = violinArr[1];
+        document.getElementById("string-one").innerHTML = violinArr[0];
+        console.log("changed to violin strings");
+        
+    } 
+
+    if(instrument == "viola" || instrument== "cello") {
+        
+        document.getElementById("string-four").innerHTML = celloArr[3];
+        document.getElementById("string-three").innerHTML = celloArr[2];
+        document.getElementById("string-two").innerHTML = celloArr[1];
+        document.getElementById("string-one").innerHTML = celloArr[0];
+        console.log("changed to cello/viola strings");
+        
+    } 
+
+    if(instrument == "bass") {
+        
+        document.getElementById("string-four").innerHTML = bassArr[3];
+        document.getElementById("string-three").innerHTML = bassArr[2];
+        document.getElementById("string-two").innerHTML = bassArr[1];
+        document.getElementById("string-one").innerHTML = bassArr[0];
+        console.log("changed to bass strings");
+        
+    } 
+}
+
 
 
 function makeString(f) {
@@ -47,6 +93,20 @@ function makeGrid(f) {
     let string2 = (string1 * (4/3)) /2;
     let string3 = (string2 * (4/3)) /2;
     let string4 = (string3 * (4/3)) /2;
+
+    if(instrument == "violin") {
+        string2 = f;
+        string1 = (string2 * (3/2));
+        string3 = (string2 * (4/3)) /2;
+        string4 = (string3 * (4/3)) /2;
+        console.log("makeGrid violin");
+    } else if(instrument == "bass") {
+        string3 = f;
+        string4 = (string3 * (3/2)) /2;
+        string2 = (string3 * (4/3));
+        string1 = (string2 * (4/3));
+        console.log("makeGrid bass");
+    }
 
     return [
         makeString(string1),
