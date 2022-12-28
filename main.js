@@ -1,22 +1,54 @@
 //add play all held off and on
 //potentially change inner html with ascii values
+//sustain all values on and off. hold state
+
+
+
 
 let hertz = 440;
 let waveform = "sine";
 let sustain = "OFF";
+// let clear = false; //added this
 let instrument = "cello";
+let synths = {}; //holding values
 
 let violinArr = ["E", "A", "D", "G"];
 let bassArr = ["G", "D", "A", "E"];
 let celloArr = ["A", "D", "G", "C"];
 
 const toggle = document.querySelector('.toggle input');
+const clearBtn = document.getElementById("clearBtn");
+clearBtn.addEventListener("click", clear);
 
 toggle.addEventListener('click', () => {
-    const onOff = toggle.parentNode.querySelector('.onOff');
     sustain = toggle.checked ? "ON" : "OFF";
     console.log(sustain);
 })
+
+function clear(){
+
+    console.log("testing clear");
+
+    
+    
+    for (const property in synths) {
+        
+        synths[property].stop();
+      }
+
+    for (let i = 0; i < 4; i++) {
+        var element = document.getElementById(i);
+        var children = element.children;
+        for (let j = 0; j < children.length; j++) {
+            var child = children[j];
+            child.style.background= child.getAttribute("background-color");
+            child.setAttribute("state", "off")
+        }
+    }
+
+    
+      
+}
 
 //add the catch and specifics for the drop down.
 function getHertz(){
@@ -137,7 +169,7 @@ function drawGrid(f) {
 const audioCtx = new AudioContext();
 audioCtx.suspend();
 
-let synths = {}; //holding values
+
 
 
 function toggleSynth(event) {
@@ -197,5 +229,54 @@ function makeOscillator() {
 }
 
 drawGrid(hertz);
+
+fetch('http://localhost:8080/api/presets')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        function appendData(data) {
+            var mainContainer = document.getElementById("presets");
+            for (var i = 0; i < data.length; i++) {
+                var option = document.createElement("option");
+                option.setAttribute("value", data[i].id);
+                var nod = document.createTextNode(data[i].presetTitle);
+                option.appendChild(nod);
+                mainContainer.appendChild(option);
+
+            }
+        }
+
+function usePreset() {
+    console.log("preset starts");
+    presetID = document.getElementById("presets").value;
+    fetch('http://localhost:8080/api/presets/' + presetID)
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                changeFields(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+}
+
+            function changeFields(data) {
+                console.log("changing fields")
+                console.log(data);
+                console.log("hertz from db: " + data.hertz)
+                hertz = data.hertz;
+                instrument = "bass"; //change the enum to string
+                waveform = "triangle"; //
+                drawGrid(hertz);
+            }
+
+
 
 

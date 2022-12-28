@@ -11,7 +11,7 @@
       <body>
         <h1>Harmonicello</h1>
         <div class="harmonicello">
-
+            <!-- EXTRA DIV makes the rows vertical -->
             <div class="string" id="3">
               <div class="open-strings string-four" id ="string-four" data-note="">C</div>
               <div class="note string-four" data-note="">2</div>
@@ -53,6 +53,7 @@
               <div class="note string-one" data-note="">8</div>
             </div>
           </div>
+          <div class="controller">
           <input type="number" id ="getHertz" value="440" min="430" max="450">
           <button onclick="getHertz()">Set Hertz</button>
           <label for="waveform">Waveform:</label>
@@ -70,10 +71,22 @@
           <option value="bass">Bass</option>
           </select>
           <label class="toggle">
-            <span class="onoff">Sustain</span>
+            <span>Sustain</span>
             <input type="checkbox">
             <span class="slider round"></span>
           </label>
+          <!-- added this -->
+          <!-- <label class="clear">
+            <span>Clear</span>
+            <input type="checkbox">
+            <span class="slider round"></span>
+          </label> -->
+          <button id="clearBtn">Clear</button>
+          <label for="presets">Presets:</label>
+          <select onchange="usePreset()" name="presets" id="presets">
+          <!-- <option value="sine">Sinewave</option> -->
+          </select>
+        </div>        
         <script src="/main.js"></script>
       </body>
 

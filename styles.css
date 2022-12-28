@@ -3,7 +3,8 @@ h1 {
     padding-left: 70px; 
 }
 
-.harmonicello {
+/* row */
+.harmonicello { 
     display: flex;
   }
   
