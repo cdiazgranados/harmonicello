@@ -1,14 +1,11 @@
 //add play all held off and on
 //potentially change inner html with ascii values
 //sustain all values on and off. hold state
-
-
-
+//add a harmonicello preset as default
 
 let hertz = 440;
 let waveform = "sine";
-let sustain = "OFF";
-// let clear = false; //added this
+let sustain = false;
 let instrument = "cello";
 let synths = {}; //holding values
 
@@ -17,13 +14,13 @@ let bassArr = ["G", "D", "A", "E"];
 let celloArr = ["A", "D", "G", "C"];
 
 const toggle = document.querySelector('.toggle input');
+toggle.addEventListener('click', toggleSustain)
 const clearBtn = document.getElementById("clearBtn");
 clearBtn.addEventListener("click", clear);
 
-toggle.addEventListener('click', () => {
-    sustain = toggle.checked ? "ON" : "OFF";
-    console.log(sustain);
-})
+function toggleSustain() {
+    sustain = toggle.checked ? true : false;
+}
 
 function clear(){
 
@@ -119,7 +116,6 @@ function makeString(f) {
     ]
 }
 
-//perhaps populate an array of string values from the database
 function makeGrid(f) {
     let string1 = f;
     let string2 = (string1 * (4/3)) /2;
@@ -175,7 +171,7 @@ audioCtx.suspend();
 function toggleSynth(event) {
     let button = event.target;
     let frequency = button.getAttribute("data-note");
-    if(button.getAttribute("state") == "off" && sustain == "OFF") {
+    if(button.getAttribute("state") == "off" && sustain == false) {
         console.log("testing no sustain");
         button.setAttribute("state", "on");
         button.style.background = '#00FF00';
@@ -197,7 +193,7 @@ function toggleSynth(event) {
         button.style.background= button.getAttribute("background-color");
         
         
-    } else if (button.getAttribute("state") == "off" && sustain == "ON") { //AND SUSTAIN TOGGLE
+    } else if (button.getAttribute("state") == "off" && sustain == true) { //AND SUSTAIN TOGGLE
         button.setAttribute("state", "on");
         button.style.background = '#00FF00';
         let oscillatorNode = makeOscillator();
@@ -268,12 +264,22 @@ function usePreset() {
 }
 
             function changeFields(data) {
-                console.log("changing fields")
+                console.log("changing fields");
                 console.log(data);
                 console.log("hertz from db: " + data.hertz)
+                
                 hertz = data.hertz;
-                instrument = "bass"; //change the enum to string
-                waveform = "triangle"; //
+                document.getElementById("getHertz").setAttribute("value", hertz);
+                instrument = data.instrument.toString().toLowerCase();
+                const $selectInstrument = document.querySelector('#instrument');
+                $selectInstrument.value = instrument;
+                changeStrings();
+                waveform = data.waveform.toString().toLowerCase(); 
+                const $selectWaveform = document.querySelector('#waveform');
+                $selectWaveform.value = waveform;
+                sustain = data.sustain;
+                document.getElementById("checkbox").checked = sustain;
+
                 drawGrid(hertz);
             }
 
