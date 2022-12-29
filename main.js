@@ -3,6 +3,7 @@
 //sustain all values on and off. hold state
 //add a harmonicello preset as default
 
+let newPresetTitle = document.getElementById('newPreset').value;
 let hertz = 440;
 let waveform = "sine";
 let sustain = false;
@@ -247,6 +248,29 @@ fetch('http://localhost:8080/api/presets')
 
             }
         }
+//create method for this post
+
+// fetch('http://localhost:8080/api/presets/', {
+//     method: "POST",
+//     headers: {
+//         'Content-type': 'application/json'
+//     },
+//     body: JSON.stringify (
+//         {
+//             "presetTitle": newPresetTitle,
+//             "hertz": hertz,
+//             "sustain": sustain,
+//             "waveform": waveform,
+//             "instrument": instrument,
+//             "user": {
+//               "id": 1,
+//               "login": "admin"
+//             }
+//           }
+//     )
+// })
+// .then(res => res.json())
+// .then(data => console.log(data))
 
 function usePreset() {
     console.log("preset starts");
