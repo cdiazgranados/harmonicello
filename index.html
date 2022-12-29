@@ -10,11 +10,13 @@
         <title>Harmonicello</title>
       </head>
       <body>
+        <nav class="navbar navbar-light bg-light">
+          <h1>Harmonicello</h1>
+        </nav>
         
         <div class="container">
           <div class="row justify-content-evenly align-items-center">
             <div class="col-lg-4">
-          <h1>Harmonicello</h1>
         <div class="harmonicello">
             <!-- EXTRA DIV makes the rows vertical -->
             <div class="string" id="3">
@@ -61,9 +63,13 @@
         </div>
         <div class="col-lg-4">
           <div class="card p-3 border bg-light">
+
+          <div>
           <input class="form-select" type="number" id ="getHertz" value="440" min="430" max="450">
           <button type="button" class="btn btn-secondary" onclick="getHertz()">Set Hertz</button>
+          </div>
 
+          <div>
           <label for="waveform">Waveform:</label>
           <select class="form-select" onchange="getWaveform()" name="waveform" id="waveform">
           <option value="sine">Sinewave</option>
@@ -71,28 +77,39 @@
           <option value="square">Square</option>
           <option value="sawtooth">Sawtooth</option>
           </select>
-          <label for="instrument">Instrument:</label>
+          </div>
 
+          <div>
+          <label for="instrument">Instrument:</label>
           <select class="form-select" onchange="getInstrument()" name="instrument" id="instrument">
           <option value="cello">Cello</option>
           <option value="violin">Violin</option>
           <option value="viola">Viola</option>
           <option value="bass">Bass</option>
           </select>
-          
+          </div>
+
+          <div>
           <label class="toggle">
             <span>Sustain</span>
             <input type="checkbox" id="checkbox">
             <span class="slider round"></span>
           </label>
+          </div>
        
 
-          <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
-          
+
+          <div>
           <label for="presets">Presets:</label>
           <select class="form-select" onchange="usePreset()" name="presets" id="presets">
           <!-- <option value="sine">Sinewave</option> -->
           </select>
+          </div>
+
+          <div>
+            <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
+            </div>
+          
         </div>
       </div>
       </div>
