@@ -89,7 +89,7 @@
         </div>
         <div class="col-lg-4">
           <div class="card p-3 border bg-light">
-
+            <h5 class="text-center">Controller</h5>
           <div>
           <input class="form-select" type="number" id ="getHertz" value="440" min="430" max="450">
           <button type="button" class="btn btn-secondary" onclick="getHertz()">Set Hertz</button>
@@ -123,15 +123,17 @@
           </div>
 
           <div>
-            <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
+            <button type="button" class="btn btn-secondary" id="clearBtn">Clear Sustain</button>
           </div>
 
         </div>
        
           <div class="card p-3 border bg-light">
 
-          <div class="p-2">
-          <label for="presets">Presets:</label>
+            <h5 class="text-center">Presets</h5>
+
+          <div class="pb-2">
+          <!-- <label for="presets">Presets:</label> -->
           <select class="form-select" onchange="usePreset()" name="presets" id="presets">
             <option value="default">harmonicello</option>
           
