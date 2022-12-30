@@ -1,9 +1,3 @@
-//add play all held off and on
-//potentially change inner html with ascii values
-//sustain all values on and off. hold state
-//add a harmonicello preset as default
-//hertz / 2 ...
-
 
 let hertz = 440;
 let waveform = "sine";
@@ -312,5 +306,16 @@ function usePreset() {
             }
 
 
+        function deletePreset() {
+            console.log("delete triggered");
+            presetID = document.getElementById("presets").value;
+            fetch('http://localhost:8080/api/presets/' + presetID, {
+                method: "DELETE",
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+            location.reload();
+        }
 
 

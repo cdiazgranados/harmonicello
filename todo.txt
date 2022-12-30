@@ -1,0 +1,8 @@
+[] fix instrument octaves
+[] potentially change inner html with ascii values
+[] sustain all values on and off. hold state
+[] add a harmonicello preset as default
+[] saving presets to different users
+[] creating a new version that uses local storage
+[] bug happens when the same hertz is sustained...
+
