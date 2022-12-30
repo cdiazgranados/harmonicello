@@ -116,15 +116,20 @@
           </select>
           </div>
 
-          <div>
-          <label class="toggle">
+          <div class="form-check form-switch">
+          <label class="toggle" class="form-check-label" for="flexSwitchCheckDefault">
             <span>Sustain</span>
-            <input type="checkbox" id="checkbox">
-            <span class="slider round"></span>
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" id="checkbox">
           </label>
           </div>
-       
 
+          <div>
+            <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
+          </div>
+
+        </div>
+       
+          <div class="card p-3 border bg-light">
 
           <div>
           <label for="presets">Presets:</label>
@@ -132,10 +137,6 @@
             <option value="default">harmonicello</option>
           
           </select>
-          </div>
-
-          <div>
-            <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
           </div>
 
             <div>
@@ -153,6 +154,8 @@
             <div>
             <button class="btn btn-secondary" type="submit" onclick="deletePreset()">Delete Selected Preset</button>
             </div>
+            
+        
         </div>
       </div>
       </div>
