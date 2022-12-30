@@ -5,4 +5,8 @@
 [] saving presets to different users
 [] creating a new version that uses local storage
 [] bug happens when the same hertz is sustained...
+[] how do you not reload after a preset has been created
+[] is there a bug that happens after you update a preset and change a preset?
+
+[]Delete random development link in the preset tab of the api
 

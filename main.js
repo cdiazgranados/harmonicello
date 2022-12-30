@@ -272,7 +272,12 @@ fetch('http://localhost:8080/api/presets')
 
 function usePreset() {
     console.log("preset starts");
-    presetID = document.getElementById("presets").value;
+    let presetID = document.getElementById("presets").value;
+    if(presetID == 'default') {
+        console.log("default selected");
+        location.reload();
+        
+    } else {
     fetch('http://localhost:8080/api/presets/' + presetID)
             .then(function (response) {
                 return response.json();
@@ -303,7 +308,46 @@ function usePreset() {
                 document.getElementById("checkbox").checked = sustain;
 
                 drawGrid(hertz);
+            }  
             }
+
+        function updatePreset() {
+            let presetID = document.getElementById("presets").value;
+            let presetName = "";
+
+            var presets = document.getElementById("presets");
+            for (var i = 0; i < presets.length; i++) {
+                var option = presets.options[i];
+                if (option.value == presetID) {
+                    presetName = option.text;
+                }
+            }
+
+            console.log("CURRENT PRESET NAME: " + presetName);       
+            fetch('http://localhost:8080/api/presets/' + presetID, {
+                method: "PUT",
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify (
+                    {   
+                        "id": presetID,
+                        "presetTitle": presetName,
+                        "hertz": hertz,
+                        "sustain": sustain,
+                        "waveform": waveform.toUpperCase(),
+                        "instrument": instrument.toUpperCase(),
+                        "user": {
+                        "id": 1,
+                        "login": "admin"
+                        }
+                    }
+                )
+            })
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+        }    
 
 
         function deletePreset() {
