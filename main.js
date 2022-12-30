@@ -118,14 +118,20 @@ function makeGrid(f) {
     let string3 = (string2 * (4/3)) /2;
     let string4 = (string3 * (4/3)) /2;
 
-    if(instrument == "violin") {
+    if(instrument == "cello") {
+        string2 = f / 2;
+        string1 = (string2 * (3/2));
+        string3 = (string2 * (4/3)) /2;
+        string4 = (string3 * (4/3)) /2;
+        console.log("makeGrid violin");
+    } else if(instrument == "violin") {
         string2 = f;
         string1 = (string2 * (3/2));
         string3 = (string2 * (4/3)) /2;
         string4 = (string3 * (4/3)) /2;
         console.log("makeGrid violin");
     } else if(instrument == "bass") {
-        string3 = f;
+        string3 = f / 4;
         string4 = (string3 * (3/2)) /2;
         string2 = (string3 * (4/3));
         string1 = (string2 * (4/3));

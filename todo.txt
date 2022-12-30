@@ -9,5 +9,5 @@
 [] is there a bug that happens after you update a preset and change a preset?
 [] Change the hertz onchange instead of using a button
 
-[]cut the empty space of the border image
+[]cut the empty space of the icon
 
