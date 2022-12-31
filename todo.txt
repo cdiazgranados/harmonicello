@@ -1,13 +1,20 @@
-[] fix instrument octaves
-[] potentially change inner html with ascii values
-[] sustain all values on and off. hold state
-[] add a harmonicello preset as default
+Short term changes
+
+[] craft the audio context sound
+[] bug happens when the same hertz is sustained in multiple strings.
 [] saving presets to different users
-[] creating a new version that uses local storage
-[] bug happens when the same hertz is sustained...
 [] how do you not reload after a preset has been created
 [] is there a bug that happens after you update a preset and change a preset?
 [] Change the hertz onchange instead of using a button
-
 []cut the empty space of the icon
+
+Potential changes
+
+[] potentially change inner html with ascii values
+[] sustain all values on and off. hold state
+[] creating a new version that uses local storage
+[] add volumn bar
+[] add herz as a comment box
+
+
 
