@@ -126,6 +126,15 @@
             <h5 class="text-center">Controller</h5>
             <div>
               <input
+                type="number"
+                id="getHertz"
+                value="440"
+                min="430"
+                max="450"
+              />
+              <button onclick="getHertz()">Set Hertz</button>
+
+              <!-- <input
                 class="form-select"
                 type="number"
                 id="getHertz"
@@ -139,7 +148,7 @@
                 onclick="getHertz()"
               >
                 Set Hertz
-              </button>
+              </button> -->
             </div>
 
             <div>
@@ -172,11 +181,13 @@
               </select>
             </div>
 
-            <div class="form-check form-switch">
+            <!-- fix this switch -->
+            <!-- <div class="form-check form-switch">
               <label
                 class="toggle"
                 class="form-check-label"
                 for="flexSwitchCheckDefault"
+                checked
               >
                 <span>Sustain</span>
                 <input
@@ -186,6 +197,14 @@
                   id="flexSwitchCheckDefault"
                   id="checkbox"
                 />
+              </label>
+            </div> -->
+
+            <div>
+              <label class="toggle">
+                <span>Sustain</span>
+                <input type="checkbox" id="checkbox" />
+                <span class="slider round"></span>
               </label>
             </div>
 
@@ -200,7 +219,6 @@
             <h5 class="text-center">Presets</h5>
 
             <div class="pb-2">
-              <!-- <label for="presets">Presets:</label> -->
               <select
                 class="form-select"
                 onchange="usePreset()"

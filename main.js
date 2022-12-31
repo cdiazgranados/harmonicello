@@ -2,7 +2,7 @@ let hertz = 440;
 let waveform = "sine";
 let sustain = false;
 let instrument = "cello";
-let synths = {}; //holding values
+let synths = {}; //holding frequency values of sustained pitches
 
 let violinArr = ["E", "A", "D", "G"];
 let bassArr = ["G", "D", "A", "E"];
@@ -35,15 +35,15 @@ function clear() {
   }
 }
 
-//add the catch and specifics for the drop down.
 function getHertz() {
   hertz = document.getElementById("getHertz").value;
-  // hertz = hertz / 2;
+
   drawGrid(hertz);
+
+  document.getElementById("getHertz").setAttribute("value", hertz);
+  console.log(document.getElementById("getHertz").value);
 }
 
-//add a catch for stopping the oscillator when change happens during a sustained note
-//would this be a feature?
 function getWaveform() {
   waveform = document.getElementById("waveform").value;
   drawGrid(hertz);
@@ -161,7 +161,6 @@ function toggleSynth(event) {
     button.setAttribute("state", "off");
     button.style.background = button.getAttribute("background-color");
   } else if (button.getAttribute("state") == "off" && sustain == true) {
-    //AND SUSTAIN TOGGLE
     button.setAttribute("state", "on");
     button.style.background = "#00FF00";
     let oscillatorNode = makeOscillator();
@@ -265,6 +264,7 @@ function usePreset() {
 
     hertz = data.hertz;
     document.getElementById("getHertz").setAttribute("value", hertz);
+    document.getElementById("getHertz").value = hertz;
     instrument = data.instrument.toString().toLowerCase();
     const $selectInstrument = document.querySelector("#instrument");
     $selectInstrument.value = instrument;
@@ -309,9 +309,12 @@ function updatePreset() {
         login: "admin",
       },
     }),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data));
+  });
+
+  getHertz();
+
+  // .then((res) => res.json())
+  // .then((data) => console.log(data));
 }
 
 function deletePreset() {
