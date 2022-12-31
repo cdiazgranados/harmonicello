@@ -2,6 +2,12 @@ let hertz = 440;
 let waveform = "sine";
 let sustain = false;
 let instrument = "cello";
+let defaultPreset = {
+  hertz: 440,
+  waveform: "sine",
+  sustain: false,
+  instrument: "cello",
+};
 let synths = {}; //holding frequency values of sustained pitches
 
 let violinArr = ["E", "A", "D", "G"];
@@ -152,6 +158,8 @@ function toggleSynth(event) {
     let output = audioCt.destination;
     oscillatorNode.connect(gainNode);
     gainNode.gain.setValueAtTime(0.1, audioCt.currentTime);
+    //sounds like a marimba
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCt.currentTime + 3);
     gainNode.connect(output);
     oscillatorNode.frequency.value = frequency;
     oscillatorNode.type = waveform;
@@ -236,6 +244,7 @@ function createPreset() {
   })
     .then((res) => res.json())
     .then((data) => console.log(data));
+  location.reload();
 }
 
 function usePreset() {
@@ -243,7 +252,18 @@ function usePreset() {
   let presetID = document.getElementById("presets").value;
   if (presetID == "default") {
     console.log("default selected");
-    location.reload();
+    hertz = defaultPreset.hertz;
+    document.getElementById("getHertz").setAttribute("value", hertz);
+    document.getElementById("getHertz").value = hertz;
+    instrument = defaultPreset.instrument;
+    const $selectInstrument = document.querySelector("#instrument");
+    $selectInstrument.value = instrument;
+    changeStrings();
+    waveform = defaultPreset.waveform;
+    const $selectWaveform = document.querySelector("#waveform");
+    $selectWaveform.value = waveform;
+    sustain = defaultPreset.sustain;
+    document.getElementById("checkbox").checked = sustain;
   } else {
     fetch("http://localhost:8080/api/presets/" + presetID)
       .then(function (response) {
@@ -311,7 +331,7 @@ function updatePreset() {
     }),
   });
 
-  getHertz();
+  //   getHertz();
 
   // .then((res) => res.json())
   // .then((data) => console.log(data));
@@ -326,5 +346,6 @@ function deletePreset() {
       "Content-type": "application/json",
     },
   });
+  location.reload();
   location.reload();
 }
